@@ -1,0 +1,151 @@
+#VRML_SIM V6.0 utf8
+WorldInfo {
+  info [
+    "Description"
+    "Author: first name last name <e-mail>"
+    "Date: DD MMM YYYY"
+  ]
+}
+Viewpoint {
+  orientation 0.146345 0.986309 0.0760168 4.84812
+  position -1.3651 0.692389 0.453396
+}
+Background {
+  skyColor [
+    0.4 0.7 1
+  ]
+}
+PointLight {
+  location 0 0.3 0
+}
+Solid {
+  translation -0.5 0 -0.5
+  children [
+    Shape {
+      geometry ElevationGrid {
+        color Color {
+          color [
+            0.803922 0.498039 0.298039
+            1 1 0
+          ]
+        }
+        colorPerVertex FALSE
+        xDimension 11
+        xSpacing 0.1
+        zDimension 11
+        zSpacing 0.1
+      }
+    }
+  ]
+  boundingObject Shape {
+    geometry IndexedFaceSet {
+      coord Coordinate {
+        point [
+          0 0 0
+          0 0 1
+          1 0 1
+          1 0 0
+        ]
+      }
+      coordIndex [
+        0, 1, 2, 3, -1
+      ]
+    }
+  }
+}
+DEF HuboKHR4 Robot {
+  translation 0 0.99 0
+  children [
+    DEF WST Servo {
+      children [
+        DEF theJoint Shape {
+          geometry Cylinder {
+            height 0.05
+            radius 0.05
+          }
+        }
+        DEF LHY Servo {
+          translation 0.12 -0.18547 0
+          rotation 0 1 0 0.08
+          children [
+            DEF LHR Servo {
+              rotation 0 0 1 1.571
+              children [
+                DEF LHP Servo {
+                  rotation 0 -1 0 1.571
+                  children [
+                    DEF LKN Servo {
+                      translation 0 0 0.30003
+                      rotation 0 -1 0 1.571
+                      children [
+                        DEF LAP Servo {
+                          translation 0.30003 0 0
+                          rotation 0 -1 0 1.571
+                          children [
+                            DEF LAR Servo {
+                              rotation -1 0 0 1.571
+                              children [
+                                Transform {
+                                  translation -0.03 0.09497 0
+                                  children [
+                                    Shape {
+                                      geometry Box {
+                                        size 0.22 0.011 0.13
+                                      }
+                                    }
+                                  ]
+                                }
+                                Transform {
+                                  rotation 0 0 1 1.571
+                                  children [
+                                    USE theJoint
+                                  ]
+                                }
+                              ]
+                              name "LAR"
+                            }
+                            Transform {
+                              rotation 0 1 0 1.571
+                              children [
+                                USE theJoint
+                              ]
+                            }
+                          ]
+                          name "LAP"
+                        }
+                        Transform {
+                          rotation 0 1 0 1.571
+                          children [
+                            USE theJoint
+                          ]
+                        }
+                      ]
+                      name "LKN"
+                    }
+                    Transform {
+                      rotation 0 1 0 1.571
+                      children [
+                        USE theJoint
+                      ]
+                    }
+                  ]
+                  name "LHP"
+                }
+                Transform {
+                  rotation 1 0 0 1.571
+                  children [
+                    USE theJoint
+                  ]
+                }
+              ]
+              name "LHR"
+            }
+            USE theJoint
+          ]
+          name "LHY"
+        }
+      ]
+      name "WST"
+    }
+  ]
+}
