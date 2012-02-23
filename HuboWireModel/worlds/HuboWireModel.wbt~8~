@@ -1,0 +1,103 @@
+#VRML_SIM V6.0 utf8
+WorldInfo {
+  info [
+    "Description"
+    "Author: first name last name <e-mail>"
+    "Date: DD MMM YYYY"
+  ]
+}
+Viewpoint {
+  orientation 0.0976819 0.98263 -0.157786 5.99153
+  position -0.475255 0.466404 1.72176
+}
+Background {
+  skyColor [
+    0.4 0.7 1
+  ]
+}
+PointLight {
+  location 0 0.3 0
+}
+Solid {
+  translation -0.5 0 -0.5
+  children [
+    Shape {
+      geometry ElevationGrid {
+        color Color {
+          color [
+            0.803922 0.498039 0.298039
+            1 1 0
+          ]
+        }
+        colorPerVertex FALSE
+        xDimension 11
+        xSpacing 0.1
+        zDimension 11
+        zSpacing 0.1
+      }
+    }
+  ]
+  boundingObject Shape {
+    geometry IndexedFaceSet {
+      coord Coordinate {
+        point [
+          0 0 0
+          0 0 1
+          1 0 1
+          1 0 0
+        ]
+      }
+      coordIndex [
+        0, 1, 2, 3, -1
+      ]
+    }
+  }
+}
+DEF HuboKHR4 Robot {
+  translation 0 0.59 0
+  children [
+    DEF WST Servo {
+      children [
+        DEF theJoint Shape {
+          geometry Cylinder {
+            height 0.05
+            radius 0.05
+          }
+        }
+        DEF LHY Servo {
+          translation 0.12 -0.18547 0
+          rotation 0 1 0 0.08
+          children [
+            DEF LHR Servo {
+              rotation 0 0 1 1.571
+              children [
+                DEF LHP Servo {
+                  rotation 0 -1 0 3.311
+                  children [
+                    Transform {
+                      rotation 0 1 0 1.571
+                      children [
+                        USE theJoint
+                      ]
+                    }
+                  ]
+                  name "LHP"
+                }
+                Transform {
+                  rotation 1 0 0 1.571
+                  children [
+                    USE theJoint
+                  ]
+                }
+              ]
+              name "LHR"
+            }
+            USE theJoint
+          ]
+          name "LHY"
+        }
+      ]
+      name "WST"
+    }
+  ]
+}

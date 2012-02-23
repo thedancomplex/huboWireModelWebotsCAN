@@ -1,0 +1,663 @@
+#VRML_SIM V6.0 utf8
+WorldInfo {
+  info [
+    "Description"
+    "Author: first name last name <e-mail>"
+    "Date: DD MMM YYYY"
+  ]
+}
+Viewpoint {
+  orientation 0.498632 0.851408 0.1627 5.31021
+  position -2.51096 2.34618 2.15345
+}
+Background {
+  skyColor [
+    0.4 0.7 1
+  ]
+}
+PointLight {
+  location 0 1.07 0.8
+}
+Solid {
+  translation -0.5 0 -0.5
+  children [
+    Shape {
+      geometry ElevationGrid {
+        color Color {
+          color [
+            0.803922 0.498039 0.298039
+            1 1 0
+          ]
+        }
+        colorPerVertex FALSE
+        xDimension 11
+        xSpacing 0.1
+        zDimension 11
+        zSpacing 0.1
+      }
+    }
+  ]
+  boundingObject Shape {
+    geometry IndexedFaceSet {
+      coord Coordinate {
+        point [
+          0 0 0
+          0 0 1
+          1 0 1
+          1 0 0
+        ]
+      }
+      coordIndex [
+        0, 1, 2, 3, -1
+      ]
+    }
+  }
+}
+DEF HuboKHR4 Robot {
+  translation 0 0.99 0
+  children [
+    DEF NKY Servo {
+      translation 0 0.401 0
+      rotation 0 -1 0 0
+      children [
+        DEF theJoint Shape {
+          geometry Cylinder {
+            height 0.05
+            radius 0.05
+          }
+        }
+        DEF NKR Servo {
+          rotation 0 0 -1 1.571
+          children [
+            DEF NKP Servo {
+              rotation 0 -1 0 1.571
+              children [
+                DEF Face Transform {
+                  translation 0.05 0 0.01
+                  children [
+                    Transform {
+                      children [
+                        Transform {
+                          translation 0 0 -0.04
+                          children [
+                            Shape {
+                              geometry Box {
+                                size 0.02 0.02 0.06
+                              }
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                    DEF Eye2 Transform {
+                      translation 0.02 0.05 0
+                      children [
+                        DEF thEye Shape {
+                          geometry Box {
+                            size 0.02 0.02 0.02
+                          }
+                        }
+                      ]
+                    }
+                    DEF Eye Transform {
+                      translation 0.02 -0.05 0
+                      children [
+                        DEF thEye Shape {
+                          geometry Box {
+                            size 0.02 0.02 0.02
+                          }
+                        }
+                      ]
+                    }
+                    Transform {
+                      children [
+                        Shape {
+                          geometry Box {
+                            size 0.02 0.16 0.02
+                          }
+                        }
+                      ]
+                    }
+                  ]
+                }
+                Transform {
+                  rotation 0 1 0 1.571
+                  children [
+                    USE theJoint
+                  ]
+                }
+              ]
+              name "NKP"
+            }
+            Transform {
+              rotation 1 0 0 1.571
+              children [
+                USE theJoint
+              ]
+            }
+          ]
+          name "NKR"
+        }
+      ]
+      name "NKY"
+    }
+    DEF BodySkel Transform {
+      translation 0 0.1865 0
+      children [
+        DEF NK Transform {
+          translation 0 0.09 0
+          children [
+            Shape {
+              geometry Box {
+                size 0.02 0.2 0.02
+              }
+            }
+          ]
+        }
+        Shape {
+          geometry Box {
+            size 0.37 0.02 0.02
+          }
+        }
+        Transform {
+          translation 0 -0.09325 0
+          children [
+            Shape {
+              geometry Box {
+                size 0.02 0.2 0.02
+              }
+            }
+          ]
+        }
+      ]
+    }
+    DEF LSP Servo {
+      translation 0.2145 0.1865 0
+      rotation -1 0 0 1.571
+      children [
+        DEF theJoint2 Transform {
+          rotation 0 0 1 1.571
+          children [
+            DEF theJoint Shape {
+              geometry Cylinder {
+                height 0.04
+                radius 0.04
+              }
+            }
+          ]
+        }
+        DEF LSR Servo {
+          children [
+            DEF LSY Servo {
+              rotation 0 0 -1 1.571
+              children [
+                DEF upperArm Transform {
+                  translation 0 0 -0.08
+                  children [
+                    Shape {
+                      geometry Box {
+                        size 0.02 0.02 0.13
+                      }
+                    }
+                  ]
+                }
+                DEF LEB Servo {
+                  translation 0 0 -0.17914
+                  rotation 0 -1 0 1.571
+                  children [
+                    DEF FourArm Transform {
+                      translation -0.07 0 0
+                      children [
+                        Shape {
+                          geometry Box {
+                            size 0.17 0.02 0.02
+                          }
+                        }
+                      ]
+                    }
+                    DEF LWY Servo {
+                      translation -0.18159 0 0
+                      rotation -1 0 0 1.571
+                      children [
+                        DEF LWP Servo {
+                          rotation 0 0 1 1.571
+                          children [
+                            DEF hand Transform {
+                              translation 0 0.04 0
+                              children [
+                                DEF thehandBox Transform {
+                                  translation 0 0.06 0
+                                  children [
+                                    Shape {
+                                      geometry Box {
+                                        size 0.07 0.07 0.02
+                                      }
+                                    }
+                                  ]
+                                }
+                                Shape {
+                                  geometry Box {
+                                    size 0.02 0.08 0.02
+                                  }
+                                }
+                              ]
+                            }
+                            Transform {
+                              rotation 0 1 0 1.571
+                              children [
+                                USE theJoint2
+                              ]
+                            }
+                          ]
+                          name "LWP"
+                        }
+                        Transform {
+                          rotation 1 0 0 1.571
+                          children [
+                            USE theJoint2
+                          ]
+                        }
+                      ]
+                      name "LWY"
+                    }
+                    Transform {
+                      rotation 0 0 1 1.571
+                      children [
+                        USE theJoint2
+                      ]
+                    }
+                  ]
+                  name "LEB"
+                }
+                Transform {
+                  rotation 0 1 0 1.571
+                  children [
+                    USE theJoint2
+                  ]
+                }
+              ]
+              name "LSY"
+            }
+            Transform {
+              rotation 0 0 1 1.571
+              children [
+                USE theJoint2
+              ]
+            }
+          ]
+          name "LSR"
+        }
+      ]
+      name "LSP"
+    }
+    DEF RSP Servo {
+      translation -0.2145 0.1865 0
+      rotation -1 0 0 1.571
+      children [
+        DEF theJoint2 Transform {
+          rotation 0 0 1 1.571
+          children [
+            DEF theJoint Shape {
+              geometry Cylinder {
+                height 0.04
+                radius 0.04
+              }
+            }
+          ]
+        }
+        DEF RSR Servo {
+          children [
+            DEF RSY Servo {
+              rotation 0 0 1 1.571
+              children [
+                DEF upperArm Transform {
+                  translation 0 0 -0.08
+                  children [
+                    Shape {
+                      geometry Box {
+                        size 0.02 0.02 0.13
+                      }
+                    }
+                  ]
+                }
+                DEF REB Servo {
+                  translation 0 0 -0.17914
+                  rotation 0 1 0 -1.571
+                  children [
+                    DEF FourArm Transform {
+                      translation -0.07 0 0
+                      children [
+                        Shape {
+                          geometry Box {
+                            size 0.17 0.02 0.02
+                          }
+                        }
+                      ]
+                    }
+                    DEF RWY Servo {
+                      translation -0.18159 0 0
+                      rotation -1 0 0 1.571
+                      children [
+                        DEF RWP Servo {
+                          rotation 0 0 -1 -1.571
+                          children [
+                            DEF hand Transform {
+                              translation 0 0.04 0
+                              children [
+                                DEF thehandBox Transform {
+                                  translation 0 0.06 0
+                                  children [
+                                    Shape {
+                                      geometry Box {
+                                        size 0.07 0.07 0.02
+                                      }
+                                    }
+                                  ]
+                                }
+                                Shape {
+                                  geometry Box {
+                                    size 0.02 0.08 0.02
+                                  }
+                                }
+                              ]
+                            }
+                            Transform {
+                              rotation 0 1 0 1.571
+                              children [
+                                USE theJoint2
+                              ]
+                            }
+                          ]
+                          name "RWP"
+                        }
+                        Transform {
+                          rotation 1 0 0 1.571
+                          children [
+                            USE theJoint2
+                          ]
+                        }
+                      ]
+                      name "RWY"
+                    }
+                    Transform {
+                      rotation 0 0 1 1.571
+                      children [
+                        USE theJoint2
+                      ]
+                    }
+                  ]
+                  name "REB"
+                }
+                Transform {
+                  rotation 0 1 0 1.571
+                  children [
+                    USE theJoint2
+                  ]
+                }
+              ]
+              name "RSY"
+            }
+            Transform {
+              rotation 0 0 1 1.571
+              children [
+                USE theJoint2
+              ]
+            }
+          ]
+          name "RSR"
+        }
+      ]
+      name "RSP"
+    }
+    DEF WST Servo {
+      children [
+        DEF theJoint Shape {
+          geometry Cylinder {
+            height 0.05
+            radius 0.05
+          }
+        }
+        DEF LHY Servo {
+          translation 0.12 -0.18547 0
+          children [
+            DEF LHR Servo {
+              rotation 0 0 1 1.571
+              children [
+                DEF LHP Servo {
+                  rotation 0 -1 0 1.571
+                  children [
+                    DEF Hip Transform {
+                      translation 0 0 0.13
+                      children [
+                        Shape {
+                          geometry Box {
+                            size 0.02 0.02 0.27
+                          }
+                        }
+                      ]
+                    }
+                    DEF LKN Servo {
+                      translation 0 0 0.30003
+                      rotation 0 -1 0 1.571
+                      children [
+                        DEF Caff Transform {
+                          translation 0.14 0 0
+                          children [
+                            Shape {
+                              geometry Box {
+                                size 0.26 0.02 0.02
+                              }
+                            }
+                          ]
+                        }
+                        DEF LAP Servo {
+                          translation 0.30003 0 0
+                          rotation 0 -1 0 1.571
+                          children [
+                            DEF LAR Servo {
+                              rotation -1 0 0 1.571
+                              children [
+                                DEF Ankle Transform {
+                                  translation 0 0.05 0
+                                  children [
+                                    Shape {
+                                      geometry Box {
+                                        size 0.02 0.1 0.02
+                                      }
+                                    }
+                                  ]
+                                }
+                                DEF Foot Transform {
+                                  translation -0.03 0.09497 0
+                                  children [
+                                    Shape {
+                                      geometry Box {
+                                        size 0.22 0.011 0.13
+                                      }
+                                    }
+                                  ]
+                                }
+                                Transform {
+                                  rotation 0 0 1 1.571
+                                  children [
+                                    USE theJoint
+                                  ]
+                                }
+                              ]
+                              name "LAR"
+                            }
+                            Transform {
+                              rotation 0 1 0 1.571
+                              children [
+                                USE theJoint
+                              ]
+                            }
+                          ]
+                          name "LAP"
+                        }
+                        Transform {
+                          rotation 0 1 0 1.571
+                          children [
+                            USE theJoint
+                          ]
+                        }
+                      ]
+                      name "LKN"
+                    }
+                    Transform {
+                      rotation 0 1 0 1.571
+                      children [
+                        USE theJoint
+                      ]
+                    }
+                  ]
+                  name "LHP"
+                }
+                Transform {
+                  rotation 1 0 0 1.571
+                  children [
+                    USE theJoint
+                  ]
+                }
+              ]
+              name "LHR"
+            }
+            USE theJoint
+          ]
+          name "LHY"
+        }
+        DEF Pel Transform {
+          translation 0 -0.0927 0
+          children [
+            Transform {
+              translation 0 -0.0927 0
+              children [
+                Shape {
+                  geometry Box {
+                    size 0.2 0.02 0.02
+                  }
+                }
+              ]
+            }
+            Shape {
+              geometry Box {
+                size 0.02 0.2 0.02
+              }
+            }
+          ]
+        }
+        DEF RHY Servo {
+          translation -0.12 -0.18547 0
+          children [
+            USE theJoint
+            DEF RHR Servo {
+              rotation 0 0 1 1.571
+              children [
+                DEF RHP Servo {
+                  rotation 0 -1 0 1.571
+                  children [
+                    DEF Hip Transform {
+                      translation 0 0 0.13
+                      children [
+                        Shape {
+                          geometry Box {
+                            size 0.02 0.02 0.27
+                          }
+                        }
+                      ]
+                    }
+                    DEF RKN Servo {
+                      translation 0 0 0.30003
+                      rotation 0 -1 0 1.571
+                      children [
+                        DEF Caff Transform {
+                          translation 0.14 0 0
+                          children [
+                            Shape {
+                              geometry Box {
+                                size 0.26 0.02 0.02
+                              }
+                            }
+                          ]
+                        }
+                        DEF RAP Servo {
+                          translation 0.30003 0 0
+                          rotation 0 -1 0 1.571
+                          children [
+                            DEF RAR Servo {
+                              rotation -1 0 0 1.571
+                              children [
+                                DEF Ankle Transform {
+                                  translation 0 0.05 0
+                                  children [
+                                    Shape {
+                                      geometry Box {
+                                        size 0.02 0.1 0.02
+                                      }
+                                    }
+                                  ]
+                                }
+                                DEF Foot Transform {
+                                  translation -0.03 0.09497 0
+                                  children [
+                                    Shape {
+                                      geometry Box {
+                                        size 0.22 0.011 0.13
+                                      }
+                                    }
+                                  ]
+                                }
+                                Transform {
+                                  rotation 0 0 1 1.571
+                                  children [
+                                    USE theJoint
+                                  ]
+                                }
+                              ]
+                              name "RAR"
+                            }
+                            Transform {
+                              rotation 0 1 0 1.571
+                              children [
+                                USE theJoint
+                              ]
+                            }
+                          ]
+                          name "RAP"
+                        }
+                        Transform {
+                          rotation 0 1 0 1.571
+                          children [
+                            USE theJoint
+                          ]
+                        }
+                      ]
+                      name "RKN"
+                    }
+                    Transform {
+                      rotation 0 1 0 1.571
+                      children [
+                        USE theJoint
+                      ]
+                    }
+                  ]
+                  name "RHP"
+                }
+                Transform {
+                  rotation 1 0 0 1.571
+                  children [
+                    USE theJoint
+                  ]
+                }
+              ]
+              name "RHR"
+            }
+          ]
+          name "RHY"
+        }
+      ]
+      name "WST"
+    }
+  ]
+  controller "UDPjointSetPythonCAN"
+}
