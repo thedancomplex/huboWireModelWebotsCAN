@@ -7,8 +7,8 @@ WorldInfo {
   ]
 }
 Viewpoint {
-  orientation 0.498632 0.851408 0.1627 5.31021
-  position -2.51096 2.34618 2.15345
+  orientation 0.441059 0.894609 0.0717099 5.56145
+  position -1.42205 1.44194 1.86891
 }
 Background {
   skyColor [
@@ -396,6 +396,7 @@ DEF HuboKHR4 Robot {
                 }
               ]
               name "RSY"
+              position 0.00105243
             }
             Transform {
               rotation 0 0 1 1.571
@@ -659,5 +660,5 @@ DEF HuboKHR4 Robot {
       name "WST"
     }
   ]
-  controller "UDPjointSetPythonCAN"
+  controller "UDPjointSetPythonCANHubo2p"
 }
