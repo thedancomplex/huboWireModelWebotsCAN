@@ -116,7 +116,7 @@ class UDPjointSetPythonCAN (Robot):
              
     #            0           1          2         3         4         5         6         7         8     9  10 11 12 13 14 15 16 17 18 19    20        21        22        23        24        25        26         27    28 29 30 31 32 33 34 35 36 37     38      39         40        41        42        43        44        45        46        47        48        49        50
     jointArg = [self.RWY, self.RWP, self.RWP, self.LWY, self.LWP, self.LWP, self.NKY, self.NKP, self.NKR, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, self.RSP, self.RSR, self.RSY, self.REB, self.LSP, self.LSR, self.LSY, self.LEB, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, self.WST, self.RHY, self.RHR, self.RHP, self.RKN, self.RAP, self.RAR, self.LHY, self.LHR, self.LHP, self.LKN, self.LAP, self.LAR ] 
-    jointDir = [    1   ,     1   ,    1    ,    1    ,     1   ,    1    ,    1    ,     1   ,     1   , 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,     1   ,    1    ,     -1  ,    -1   ,     -1  ,     1   ,     1   ,     1   , 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,     -1  ,   1     ,     -1  ,    1    ,    1    ,     -1  ,    -1   ,    1    ,     1   ,     -1  ,     -1  ,      -1  ] 
+    jointDir = [    1   ,     1   ,    1    ,    1    ,     1   ,    1    ,    1    ,     1   ,     1   , 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,     1   ,    1    ,     -1  ,    -1   ,     -1  ,     1   ,     1   ,     1   , 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,     -1,     -1  ,   1     ,     -1  ,    1    ,    1    ,     -1  ,    -1   ,    1    ,     1   ,     -1  ,     -1  ,      -1  ] 
     ##            0             1          2         3         4         5         6         7         8         9         10        11        12        13        14        15        16        17        18 19        20        21        22        23        24        25        26        27  28 29 30 31 32 33 34 35 36 37 38      39         40        41        42        43        44        45        46        47        48        49        50
     #jointArg = [self.RWY, self.RWP, self.RWP, self.LWY, self.LWP, self.LWP, self.NKY, self.NKP, self.NKR, self.RF1, self.RF2, self.RF3, self.RF4, self.RF5, self.LF1, self.LF2, self.LF3, self.LF4, self.LF5, 0, self.RSP, self.RSR, self.RSY, self.REB, self.LSP, self.LSR, self.LSY, self.LEB, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, self.RHY, self.RHR, self.RHP, self.RKN, self.RAP, self.RAR, self.LHP, self.LHR, self.LHP, self.LKN, self.LAP, self.LAR ] 
     
@@ -156,7 +156,15 @@ class UDPjointSetPythonCAN (Robot):
             
             if(math.isnan(mRad)):
               mRad = 0.0
-            
+            if(mNum == 21): #RSR
+              mRad = mRad + 0.3142;
+            if(mNum == 23):   #REB
+              mRad = mRad + 0.5240;
+            if(mNum == 25):   #LSR
+              mRad = mRad + -0.2269;
+            if(mNum == 27):   #LEB
+              mRad = mRad + 0.4014;
+              
             Servo.setPosition(jointArg[mNum], mRad )
             if(self.doLog == 1):
               self.theFile.writerow([time.time(), mNum, mRad])
